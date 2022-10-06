@@ -6,9 +6,11 @@
     <div class="post">
       <div class="card mb-3">
         <div class="row g-0">
+          @if($post->image)
           <div class="col-md-4">
-            <img src="{{$post->image}}" class="img-fluid rounded-start" alt="{{$post->slug}}">
+            <img src="{{asset('storage/'.$post->image)}}" class="img-fluid rounded-start" alt="{{$post->slug}}">
           </div>
+          @endif
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">{{$post->title}}</h5>

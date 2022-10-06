@@ -9,10 +9,10 @@
 @endif
 
 @if($post->exists)
-<form action="{{route('admin.posts.update', $post)}}" method="POST">
+<form action="{{route('admin.posts.update', $post)}}" enctype="multipart/form-data" method="POST">
   @method('PUT')
 @else
-<form action="{{route('admin.posts.store')}}" method="POST">
+<form action="{{route('admin.posts.store')}}" enctype="multipart/form-data" method="POST">
 @endif
   @csrf 
     <div class="row mb-3">
@@ -53,12 +53,14 @@
 
     </div>
     <div class="row mb-3 align-items-center">
-      <label for="image" class="col-sm-2 col-form-label">Url Img</label>
+      <label for="image" class="col-sm-2 col-form-label">Immagine</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="image" name="image" value="{{old('image', $post->image)}}">
+        <input type="file" id="image" name="image">
       </div>
-      <div class="preview col-sm-2">
-        <img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930" alt="placeholder">
+      <div class="col-sm-2">
+        <img class="img-fluid" id="preview"
+        src="{{$post->image ? asset('storage/'.$post->image) : "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"}}" 
+        alt="{{$post->image ? $post->slug : "placeholder"}}">
       </div>
     </div>
     <div class="row mb-3">

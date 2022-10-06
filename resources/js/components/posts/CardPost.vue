@@ -2,10 +2,10 @@
   <div>
     <div class="card mb-3">
       <div class="row no-gutters">
-        <div class="col-md-4">
+        <div v-if="post.image" class="col-md-4">
           <img style="width: 270px;" :src="post.image" :alt="post.slug">
         </div>
-        <div class="col-md-8">
+        <div class="col">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
               <h5 class="card-title">{{ post.title }}</h5>

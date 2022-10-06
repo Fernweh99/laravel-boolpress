@@ -6,3 +6,4 @@
 
 require('./bootstrap');
 require('./delete_confirmation');
+require('./preview')

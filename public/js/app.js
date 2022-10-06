@@ -37304,6 +37304,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./delete_confirmation */ "./resources/js/delete_confirmation.js");
 
+__webpack_require__(/*! ./preview */ "./resources/js/preview.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -37365,6 +37367,29 @@ deleteForms.forEach(function (form) {
     var hasConfirm = confirm('Sei sicuro di voler eliminare questo elemento?');
     if (hasConfirm) form.submit();
   });
+});
+
+/***/ }),
+
+/***/ "./resources/js/preview.js":
+/*!*********************************!*\
+  !*** ./resources/js/preview.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var preview = document.getElementById('preview');
+var field = document.getElementById('image');
+var placeholder = 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930';
+field.addEventListener('input', function () {
+  if (field.files && field.files[0]) {
+    var reader = new FileReader();
+    reader.readAsDataURL(field.files[0]);
+
+    reader.onload = function (e) {
+      preview.src = e.target.result;
+    };
+  } else preview.src = placeholder;
 });
 
 /***/ }),

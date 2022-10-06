@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     /**
@@ -48,7 +49,7 @@ class PostController extends Controller
             [
                 'title' => 'required|string|min:5|max:50',
                 'content' => 'required|string',
-                'image' => 'nullable|url',
+                'image' => 'nullable',
                 'category_id' => 'nullable|exists:categories,id'
             ],
             [
@@ -56,18 +57,23 @@ class PostController extends Controller
                 'title.min' => 'il titolo deve essere minimo :min caratteri',
                 'title.max' => 'il titolo deve essere massimo :max caratteri',
                 'content.required' => 'Devi inserire il contenuto',
-                'image.url' => 'l\'url immagine non è valido',
                 'category_id.exists' => 'non esiste una categoria assosiabile'
             ]
         );
-
         $data = $request->all();
         $post = new Post();
         $post->fill($data);
         $post->slug = Str::slug($post->title, '-');
         $post->user_id = Auth::id();
+        if(array_key_exists('image', $data)){
+            $link = Storage::put('posts_images', $data['image']);
+            $post->image = $link;
+        }
         $post->save();
-        $post->tags()->attach($data['tag']);
+
+        if(array_key_exists('tag', $data)){
+            $post->tags()->attach($data['tag']);
+        }
 
         return redirect()->route('admin.posts.show', $post);
     }
@@ -110,7 +116,7 @@ class PostController extends Controller
             [
                 'title' => 'required|string|min:5|max:50',
                 'content' => 'required|string',
-                'image' => 'nullable|url',
+                'image' => 'nullable',
                 'category_id' => 'nullable|exists:categories,id'
             ],
             [
@@ -118,16 +124,21 @@ class PostController extends Controller
                 'title.min' => 'il titolo deve essere minimo :min caratteri',
                 'title.max' => 'il titolo deve essere massimo :max caratteri',
                 'content.required' => 'Devi inserire il contenuto',
-                'image.url' => 'l\'url immagine non è valido',
                 'category_id.exists' => 'non esiste una categoria assosiabile'
             ]
         );
 
         $data = $request->all();
         $post->slug = Str::slug($data['title'], '-');
+        if(array_key_exists('image', $data)){
+            if($post->image)Storage::Delete($post->image);
+            $link = Storage::put('posts_images', $data['image']);
+            $post->image = $link;
+        }
         $post->update($data);
-        $post->save();
-        $post->tags()->sync($data['tag']);
+        if(array_key_exists('tags', $data)){
+            $post->tags()->sync($data['tag']);
+        }
 
         return redirect()->route('admin.posts.show', $post);
     }
@@ -141,7 +152,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-
+        if($post->image)Storage::delete($post->image);
         return redirect()->route('admin.posts.index');
     }
 }
