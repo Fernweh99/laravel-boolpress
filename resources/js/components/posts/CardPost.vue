@@ -3,7 +3,7 @@
     <div class="card mb-3">
       <div class="row no-gutters">
         <div v-if="post.image" class="col-md-4">
-          <img style="width: 270px;" :src="post.image" :alt="post.slug">
+          <img style="width: 270px;" :src="require('../../../../public/storage/'+post.image)" :alt="post.slug">
         </div>
         <div class="col">
           <div class="card-body">

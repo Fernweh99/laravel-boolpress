@@ -2310,7 +2310,7 @@ var render = function render() {
       width: "270px"
     },
     attrs: {
-      src: _vm.post.image,
+      src: __webpack_require__("./public/storage sync recursive ^\\.\\/.*$")("./" + _vm.post.image),
       alt: _vm.post.slug
     }
   })]) : _vm._e(), _vm._v(" "), _c("div", {
@@ -53857,6 +53857,40 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./public/storage sync recursive ^\\.\\/.*$":
+/*!**************************************!*\
+  !*** ./public/storage sync ^\.\/.*$ ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./posts_images/bnwuqKX3J9bhg2x0SQhEPTki6RuPpeaBKqucxxtq.png": "./storage/app/public/posts_images/bnwuqKX3J9bhg2x0SQhEPTki6RuPpeaBKqucxxtq.png",
+	"./posts_images/tlFmgoftIQzeiZkT5z633rJlFGsJoiqj8RrpVrPx.png": "./storage/app/public/posts_images/tlFmgoftIQzeiZkT5z633rJlFGsJoiqj8RrpVrPx.png"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./public/storage sync recursive ^\\.\\/.*$";
+
+/***/ }),
+
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -54502,6 +54536,28 @@ var routes = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./storage/app/public/posts_images/bnwuqKX3J9bhg2x0SQhEPTki6RuPpeaBKqucxxtq.png":
+/*!**************************************************************************************!*\
+  !*** ./storage/app/public/posts_images/bnwuqKX3J9bhg2x0SQhEPTki6RuPpeaBKqucxxtq.png ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/bnwuqKX3J9bhg2x0SQhEPTki6RuPpeaBKqucxxtq.png?f71eb36243585b1de1a9a388168fd6dd";
+
+/***/ }),
+
+/***/ "./storage/app/public/posts_images/tlFmgoftIQzeiZkT5z633rJlFGsJoiqj8RrpVrPx.png":
+/*!**************************************************************************************!*\
+  !*** ./storage/app/public/posts_images/tlFmgoftIQzeiZkT5z633rJlFGsJoiqj8RrpVrPx.png ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/tlFmgoftIQzeiZkT5z633rJlFGsJoiqj8RrpVrPx.png?373bd08188499507ec9f6eff4c1d7b4f";
 
 /***/ }),
 
