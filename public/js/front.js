@@ -2383,6 +2383,8 @@ var render = function render() {
     staticClass: "loader"
   }, [_vm._m(0)]) : _c("div", [_vm.posts.length > 0 ? _c("div", {
     staticClass: "row justify-content-center list-posts"
+  }, [_c("div", {
+    staticClass: "col-12"
   }, _vm._l(_vm.posts, function (post) {
     return _c("CardPost", {
       key: post.id,
@@ -2390,7 +2392,7 @@ var render = function render() {
         post: post
       }
     });
-  }), 1) : _c("div", [_vm.errApi ? _c("div", {
+  }), 1)]) : _c("div", [_vm.errApi ? _c("div", {
     staticClass: "alert alert-danger alert-dismissible fade show",
     attrs: {
       role: "alert"

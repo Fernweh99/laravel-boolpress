@@ -8,8 +8,10 @@ use App\Models\Post;
 use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\Tag;
+use App\Mail\PostPublished;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 class PostController extends Controller
 {
     /**
@@ -70,6 +72,10 @@ class PostController extends Controller
             $post->image = $link;
         }
         $post->save();
+
+        $mail = new PostPublished($post);
+        $user_receive = Auth::user()->email;
+        Mail::to($user_receive)->send($mail);
 
         if(array_key_exists('tag', $data)){
             $post->tags()->attach($data['tag']);

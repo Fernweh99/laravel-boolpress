@@ -9,7 +9,9 @@
       </div>
       <div v-else>
         <div v-if="posts.length > 0" class="row justify-content-center list-posts">
-          <CardPost v-for="post in posts" :key="post.id" :post="post"/>
+          <div class="col-12">
+            <CardPost v-for="post in posts" :key="post.id" :post="post"/>
+          </div>
         </div>
         <div v-else>
           <div v-if="errApi" class="alert alert-danger alert-dismissible fade show" role="alert">
