@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/posts', 'Api\PostController@index');
-Route::get('/posts/{id}', 'Api\PostController@show');
+Route::get('/posts/{slug}', 'Api\PostController@show');

@@ -15,13 +15,13 @@ export default {
     },
     data() {
       return {
-        post: [],
+        post: {},
       };
     },
     methods: {
       fetchPost() {
         Axios.get("http://localhost:8000/api/posts/"+ this.$route.params.id).then(res => {
-          this.post = res.data;
+          this.post = res.data[0];
         }).catch(err => {
           console.error(err);
         }).then(() => {
